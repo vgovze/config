@@ -4,8 +4,7 @@ set cursorline  "highlight the edited line.
 set ruler       "show cursor position (row, column).
 set visualbell      "flash cursor on error
 set colorcolumn=80  "highlight the 80th column
-colorscheme retrobox
-set background=dark
+colorscheme pablo
 
 " Functionality.
 syntax on   " syntax highlighting.
@@ -16,7 +15,8 @@ set wrap
 
 " Whitespace.
 set list    " show whitespace.
-set listchars+=space:\\u22c5    "show spaces as dots.
+set listchars+=space:\\u22c5    "set whitespaces as dots.
+set listchars+=tab:\\u2192\     "set tabs as single arrow and spaces.
 
 " Indentation.
 set autoindent      "enable auto-indentation.
