@@ -16,7 +16,7 @@ set wrap
 
 " Whitespace.
 set list    " show whitespace.
-set listchars+=space:\\u2022    "show spaces as bullets.
+set listchars+=space:\\u22c5    "show spaces as dots.
 
 " Indentation.
 set autoindent      "enable auto-indentation.
