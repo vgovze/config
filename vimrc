@@ -1,5 +1,5 @@
 " Interface properties.
-set number      "show line numers.
+set number      "show line numbers.
 set cursorline  "highlight the edited line.
 set ruler       "show cursor position (row, column).
 set visualbell      "flash cursor on error
