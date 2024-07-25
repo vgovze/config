@@ -21,6 +21,7 @@ set listchars+=tab:\\u2192\     "set tabs as single arrow and spaces.
 " Indentation.
 set autoindent      "enable auto-indentation.
 set smartindent     "enable smart indentation.
+set smarttab        "enable smart tab.
 set expandtab       "do not expand tabs into spaces.
 set tabstop=4       "width of the tab measured in spaces.
 set shiftwidth=4    "number of spaces to use for each auto-indent.
