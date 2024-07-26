@@ -574,9 +574,8 @@ require("lazy").setup({
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "ruff" },
-
 				-- Conform can also run multiple formatters sequentially
+				python = { "ruff_organize_imports", "ruff_format", "ruff_fix" },
 				-- python = { "isort", "black" },
 
 				-- You can use a sub-list to tell conform to run *until* a formatter
@@ -825,7 +824,7 @@ require("lazy").setup({
 	--  the Kickstart repository. Uncomment any of the lines below to enable
 	--  them (you will need to restart nvim).
 
-	-- require 'kickstart.plugins.debug',
+	require("kickstart.plugins.debug"),
 	-- require 'kickstart.plugins.indent_line',
 	-- require 'kickstart.plugins.lint',
 	-- require 'kickstart.plugins.autopairs',
