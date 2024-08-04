@@ -1,6 +1,10 @@
 return {
   "stevearc/conform.nvim",
   lazy = false,
+  dependencies = {
+    { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
   keys = {
     {
       "<leader>f",
@@ -11,6 +15,16 @@ return {
       desc = "[F]ormat buffer",
     },
   },
+  config = function()
+    local formatters = {
+      "stylua", -- Used to format Lua code.
+      "ruff", -- Used to format Python code.
+      "clang-format", -- Used to format C/C++ code.
+    }
+    require("mason-tool-installer").setup({
+      ensure_installed = formatters,
+    })
+  end,
   opts = {
     notify_on_error = false,
     format_on_save = function(bufnr)
