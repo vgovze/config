@@ -236,8 +236,8 @@ require("lazy").setup({
     -- installed, you can use `:Telescope colorscheme`.
     "folke/tokyonight.nvim",
     priority = 1000, --[[ Make sure to load this before
-	                         all the other start plugins.
-	                   --]]
+                         all the other start plugins.
+                   --]]
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles,
@@ -323,6 +323,10 @@ require("lazy").setup({
 
   -- Fuzzy Finder (files, lsp, etc.)
   require("kickstart.plugins.telescope"),
+
+  -- Installs LS, formatters and other tools.
+  -- NOTE: Mason must be loaded before loading lsp tools etc.
+  require("kickstart.plugins.mason"),
 
   -- LSP Configuration & Plugins.
   require("kickstart.plugins.lsp"),

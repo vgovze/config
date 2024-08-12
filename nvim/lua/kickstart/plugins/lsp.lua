@@ -1,10 +1,8 @@
 return {
   "neovim/nvim-lspconfig",
+
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for Neovim
-    { "williamboman/mason.nvim", config = true }, -- NOTE: Must be loaded before dependants
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "hrsh7th/cmp-nvim-lsp",
 
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -19,12 +17,6 @@ return {
 
     -- LSP stands for Language Server Protocol. It's a protocol that helps
     -- editors and language tooling communicate in a standardized fashion.
-
-    -- In general, you have a "server" which is some tool built to
-    -- understand a particular language (such as `gopls`, `lua_ls`,
-    -- `rust_analyzer`, etc.). These Language Servers (sometimes called
-    -- LSP servers, but that's kind of like ATM Machine) are standalone
-    -- processes that communicate with some "client" - in this case, Neovim!
 
     -- LSP provides Neovim with features like:
     --  - Go to definition
@@ -202,9 +194,8 @@ return {
       require("cmp_nvim_lsp").default_capabilities()
     )
 
-    -- Enable the following language servers
-    -- Feel free to add/remove any LSPs that you want here.
-    -- They will automatically be installed.
+    -- Enable the following language servers.
+    -- NOTE: Add the language servers to mason.lua as well.
 
     --  Add any additional override configuration in the following tables.
     --  Available keys are:
@@ -219,19 +210,12 @@ return {
 
     -- See `:help lspconfig-all` for a list of all the pre-configured LSPs.
     local servers = {
-      clangd = {},
-      pyright = {},
-      -- foam_ls = {},
-      -- fortls = {},
-      -- gopls = {},
-      -- rust_analyzer = {},
-      -- ... etc.
+      clangd = {}, -- C/C++
+      bashls = {}, -- Bash
+      pyright = {}, -- Python
 
       -- Some languages (like typescript) have entire language plugins that
       -- can be useful: https://github.com/pmizio/typescript-tools.nvim
-
-      -- But for many setups, the LSP (`tsserver`) will work just fine
-      -- tsserver = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -249,18 +233,6 @@ return {
         },
       },
     }
-
-    -- Ensure the servers and tools above are installed.
-    -- To check the current status of installed tools and/or manually install
-    -- other tools, you can run `:Mason`
-
-    --  You can press `g?` for help in this menu.
-    require("mason").setup()
-
-    local ensure_installed = vim.tbl_keys(servers or {})
-    require("mason-tool-installer").setup({
-      ensure_installed = ensure_installed,
-    })
 
     require("mason-lspconfig").setup({
       handlers = {
