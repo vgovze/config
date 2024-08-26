@@ -1,6 +1,7 @@
 -- Provided by TJ De Vries (Kickstart neovim).
 --  NOTE: For nvim basics type :Tutor.
 
+-- [[ Basic setup ]]
 -- Set <space> as the leader key. See `:help mapleader`.
 --  NOTE: Must happen before plugins are loaded.
 vim.g.mapleader = " "
@@ -98,64 +99,9 @@ vim.opt.colorcolumn = "80"
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.opt.hlsearch = true
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Diagnostic keymaps
-vim.keymap.set(
-  "n",
-  "[d",
-  vim.diagnostic.goto_prev,
-  { desc = "Go to previous [D]iagnostic message" }
-)
-vim.keymap.set(
-  "n",
-  "]d",
-  vim.diagnostic.goto_next,
-  { desc = "Go to next [D]iagnostic message" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>e",
-  vim.diagnostic.open_float,
-  { desc = "Show diagnostic [E]rror messages" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>q",
-  vim.diagnostic.setloclist,
-  { desc = "Open diagnostic [Q]uickfix list" }
-)
-
--- Alternative terminal exit (not working in every shell).
--- Default is <C-\><C-n>.
-vim.keymap.set(
-  "t",
-  "<Esc><Esc>",
-  "<C-\\><C-n>",
-  { desc = "Exit terminal mode" }
-)
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup(
-    "kickstart-highlight-yank",
-    { clear = true }
-  ),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+-- [[ Custom additional configuration ]]
+require("custom.keymaps")
+require("custom.autocommands")
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 -- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim.
@@ -342,8 +288,7 @@ require("lazy").setup({
   -- This is the easiest way to modularize your config.
 
   --  See `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- [[ Latex ]]
-  -- require("custom.plugins.latex")
+  require("custom.plugins.bigfiles"),
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will
