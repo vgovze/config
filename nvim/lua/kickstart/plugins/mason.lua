@@ -16,6 +16,8 @@ return {
         "clangd",
         "bashls",
         "pyright",
+        "arduino_language_server",
+        "lua_ls",
       },
     })
 

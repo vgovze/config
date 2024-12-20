@@ -32,6 +32,7 @@ LazyConform = {
       -- javascript = { { "prettierd", "prettier" } },
       javascript = { "prettier" },
       c = { "clang-format" },
+      arduino = { "clang-format" },
       bash = { "shfmt" },
       sh = { "shfmt" },
       markdown = { "prettier" },

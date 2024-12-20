@@ -16,6 +16,7 @@ return {
       "python",
       "cpp",
       "regex",
+      "arduino",
     },
     -- Autoinstall languages that are not installed
     auto_install = true,
