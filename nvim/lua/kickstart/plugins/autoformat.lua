@@ -1,5 +1,8 @@
 LazyConform = {
   "stevearc/conform.nvim",
+  dependencies = {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
   keys = {
     {
       "<leader>f",

@@ -2,10 +2,7 @@ return {
   "neovim/nvim-lspconfig",
 
   dependencies = {
-    -- This must be loaded first.
-    "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-
     "hrsh7th/cmp-nvim-lsp",
 
     -- Useful status updates for LSP.
@@ -198,9 +195,6 @@ return {
       require("cmp_nvim_lsp").default_capabilities()
     )
 
-    -- Enable the following language servers.
-    -- NOTE: Add the language servers to mason.lua as well.
-
     --  Add any additional override configuration in the following tables.
     --  Available keys are:
     --  - cmd (table): Override the default command used to start the server.
@@ -211,6 +205,9 @@ return {
     --  - settings (table): Override the default settings passed when
     --      initializing the server. For example, to see the options for
     --      `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+    -- NOTE: The LS need to be added to mason-lspconfig to ensure
+    -- they are installed.
 
     -- See `:help lspconfig-all` for a list of all the pre-configured LSPs.
     local servers = {

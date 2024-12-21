@@ -133,27 +133,70 @@ require("lazy").setup({
     end,
   },
 
+  -- Mason. Required for LSP, Formatters etc.
+  {
+    "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup() -- Init Mason.
+    end,
+  },
+
+  -- Install language servers using mason.
+  {
+    "williamboman/mason-lspconfig.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
+    config = function()
+      require("mason-lspconfig").setup({
+        automatic_installation = true,
+        ensure_installed = {
+          "clangd",
+          "bashls",
+          "pyright",
+          "arduino_language_server",
+          "lua_ls",
+        },
+      })
+    end,
+  },
+
+  -- Install formatters and other tooling using Mason.
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    dependencies = {
+      "williamboman/mason.nvim",
+    },
+    config = function()
+      require("mason-tool-installer").setup({
+        ensure_installed = {
+          "stylua", -- Used to format Lua code.
+          "ruff", -- Used to format Python code.
+          "clang-format", -- Used to format C/C++ code.
+          "shfmt", -- Used to format sh and bash code.
+          "prettier", -- Used to format markdown, js, ts, html, css
+        },
+      })
+    end
+  },
+
   -- Fuzzy Finder (files, lsp, etc.)
   require("kickstart.plugins.telescope"),
 
-  -- Installs LS, formatters and other tools.
-  -- NOTE: Mason must be loaded before loading lsp tools etc.
-  require("kickstart.plugins.mason"),
+  -- Highlight, edit, and navigate code.
+  require("kickstart.plugins.treesitter"),
+
+  -- Autocompletion.
+  require("kickstart.plugins.autocompletion"),
+
+  -- Display a navigatable directory tree.
+  require("kickstart.plugins.neo-tree"),
 
   -- LSP Configuration & Plugins.
   require("kickstart.plugins.lsp"),
 
   -- Autoformat.
   require("kickstart.plugins.autoformat"),
-
-  -- Autocompletion.
-  require("kickstart.plugins.autocompletion"),
-
-  -- Highlight, edit, and navigate code.
-  require("kickstart.plugins.treesitter"),
-
-  -- Display a navigatable directory tree.
-  require("kickstart.plugins.neo-tree"),
 
   -- require 'kickstart.plugins.lint',
 
